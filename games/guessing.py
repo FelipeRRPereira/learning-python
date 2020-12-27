@@ -7,7 +7,7 @@ number_attempts = 3
 roundNumber = 1
 
 while roundNumber <= number_attempts:
-    print("Tentativa", roundNumber, " de ", number_attempts)
+    print("Tentativa {} de {}".format(roundNumber, number_attempts))
     attempt_str = input("Digite o seu numero: ")
     print("Você digitou ", attempt_str)
     attempt = int(attempt_str)
