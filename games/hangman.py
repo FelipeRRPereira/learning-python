@@ -1,23 +1,12 @@
 import random
 
+
 def play():
-    print("*********************************")
-    print("** Bem vindo ao jogo de forca! **")
-    print("*********************************")
 
-    archive = open('games/words.txt', 'r')
-    words = []
+    print_welcome()
+    secret_word = get_secret_word()
+    correct_letter = initial_correct_letter(secret_word)
 
-    for line in archive:
-        line = line.strip()
-        words.append(line)
-
-    archive.close()
-
-    number = random.randrange(0, len(words))
-    secret_word = words[number].upper()
-
-    correct_letter = ["_" for letter in secret_word]
     hanged = False
     hit = False
     error = 0
@@ -48,6 +37,31 @@ def play():
     print("************")
     print("Fim do jogo!")
     print("************")
+
+
+def print_welcome():
+    print("*********************************")
+    print("** Bem vindo ao jogo de forca! **")
+    print("*********************************")
+
+
+def get_secret_word():
+    archive = open('games/words.txt', 'r')
+    words = []
+
+    for line in archive:
+        line = line.strip()
+        words.append(line)
+
+    archive.close()
+
+    number = random.randrange(0, len(words))
+    secret_word = words[number].upper()
+    return secret_word
+
+
+def initial_correct_letter(word):
+    ["_" for letter in word]
 
 
 if __name__ == "__main__":
