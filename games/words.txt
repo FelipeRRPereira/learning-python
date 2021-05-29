@@ -1,0 +1,11 @@
+banana
+papaya
+apple
+pineapple
+strawberry
+lettuce
+watermelon
+lemon
+pear
+grape
+tangerine
