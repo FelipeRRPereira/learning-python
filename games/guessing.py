@@ -41,9 +41,13 @@ def play():
             break
         else:
             if isBigger:
-                print("Você errou! Valor informado maior que o número secreto.")
+                print(
+                    "Você errou! Valor informado maior que o número secreto."
+                )
             elif isSmaller:
-                print("Você errou! Valor informado menor que o número secreto.")
+                print(
+                    "Você errou! Valor informado menor que o número secreto."
+                )
             lost_score = abs(secret_number - attempt) / 3
             score = score - lost_score
 
