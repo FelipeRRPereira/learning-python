@@ -262,6 +262,29 @@ number = random.randrange(1, 101)
 print(number) # retorno sempre vai ser o mesmo.
 ```
 
+**Curiosidade Bool**
+
+Na função *build-in* *bool* podemos utilizar do conceito chamado de "*Truth Value Testing*" ou seja, validar se o valor é vazio. Note que os valores nulos ou vazios e zeros retorno false como resultado. Isso diminuem alguns caracteres de validações normalmente feitas em outras linguagens. Veja a seguir:
+
+```python
+>>> bool(0)
+False
+>>> bool("")
+False
+>>> bool(None)
+False
+>>> bool(1)
+True
+>>> bool(-100)
+True
+>>> bool(13.5)
+True
+>>> bool("teste")
+True
+>>> bool(True)
+True
+```
+
 **Diferenças entre Python2 x Python3 no uso de *round***
 
 A função de arredondamento no *Python2* retorna um número de tipo *float*, já no *Python3* é retornado um número do tipo *int*. Veja:
@@ -311,3 +334,183 @@ Outro exemplo com parâmetros:
 def somar(a, b):
 	return a + b
 ```
+
+**Parâmetros nomeados e opcionais**
+
+No *Python* temos uma funcionalidade que não está presente em todas as linguagens de programação. Nas funções *Python* podemos declarar parâmetros nomeados e opcionais, tirando a necessidade de manter a passagem de parâmetro em ordem e de tornar opcional informar algum valor. Veja a seguir:
+
+```python
+# Declaração da função
+def carrega_palavra_secreta(nome_arquivo = "palavras.txt", primeira_linha_valida = 0):
+	pass
+
+# Função com valor pardão tirando a obrigatoriedade de informar.
+carrega_palavra_secreta(nome_arquivo="frutas.txt", primeira_linha_valida= 5)
+# A mesma função com ordem de passagem diferente devido a funcionalidade de parâmetros 
+# nomeados.
+carrega_palavra_secreta(primeira_linha_valida=5, nome_arquivo="frutas.txt")
+```
+
+### Tipo Str ou String
+
+No Python o tipo *String,* é chamado de *str,* o qual disponibiliza uma serie de funções para utilização nas comuns *strings.* As *str* podem ser declaradas com aspas simples, duplas e triplas. Veja o exemplo:
+
+```python
+# aspas simples
+nome = 'Felipe'
+# aspas duplas
+sobre_nome = "Pereira"
+# aspas triplas - armazena todos os espaços e quebras de linha.
+nome_completo = '''
+Felipe 
+Pereira
+'''
+```
+
+**Alguns Métodos do Str**
+
+Alguns métodos com funcionalidades interessantes estão presentes na biblioteca do Python. Funcionalidades como *capitalize, casefold, title, endswith* e *find*. Veja exemplos:
+
+```python
+# Capitalize - Converte primeira letra em maiuscula
+nome = 'felipe'
+nome.capitalize()
+# Retorno: Felipe
+
+# Casefold - Converte todas as letras maiúsculas para minúsculas
+nome = 'FELIPE'
+nome.casefold()
+# Retorno: felipe
+
+# Title - Converte todas as iniciais para maiúsculas
+nome = 'felipe pereira'
+nome.title()
+# Retorno: Felipe Pereira
+
+# Endswith - Retorna True se a string final for igual a passada por parâmetro
+nome = 'Felipe Pereira'
+nome.endswith('ira')
+# Retorno: True
+
+# Find - Busca uma string passada por parâmetro e retorna o primeiro indice encontrado
+nome = 'Felipe Pereira'
+nome.find('ira')
+# Retorno: 11
+```
+
+### Tipos de Sequências - List, tuple e range
+
+Como na maioria das linguagens, estruturas de dados listas estão presentes também no Python porém são chamadas de sequencias e estão distribuídas em três tipos, list, tuple e range.
+
+```python
+# List - Transforma uma sequencia de string em um array ou list.
+list('abc')
+# Retorno: ['a', 'b', 'c']
+
+# Tuple - Também transforma uma sequencia de caracteres em uma tuple, porém imutável.
+tuple('123')
+# Retorno: ('1', '2', '3')
+
+# Range - Sequência do inicio 0 até o valor passado por parâmetro e também é imutável.
+range(3)
+# Retorno: range(0, 3)
+```
+
+**Funções**
+
+Alguns das funções build-in que podem ser utilizadas em tipos de sequências, min(), max(), len() entre outras. Veja a seguir:
+
+```python
+# Min - Retorna o menor valor de uma lista
+valores = [0, 1, 2, 3]
+min(valores)
+# Retorno: 0
+
+# Max - Retorna o maior valor de uma lista
+valores = [0, 1, 2, 3]
+max(valores)
+# Retorno: 3
+
+# Len - Retorna a quantidade de elementos em uma lista
+valores = [0, 1, 2, 3]
+len(valores)
+# Retorno: 4
+
+# Count - Retorna a quantidade de vezes que um elemento existe em uma lista
+valores = [0, 1, 2, 3, 3, 3]
+print(valores.count(3))
+# Retorno: 3
+
+# Index - Retorna o indíce do elemento passado por parâmetro
+valores = ['A', 'B', 'C', 'D']
+print(valores.index('B'))
+# Retorno: 1
+```
+
+**List Comprehension**
+
+Compreensão de lista é um funcionalidade com uma sintaxe simples e enxuta que o Python oferece para realizar criação de novas listas com a necessidade de uso de laços.
+
+```python
+palavra = 'List Comprehension'
+
+# Laço adicionando um _ em cada posição da palavra
+for letra in palavra
+	letras_secretas.append('_')
+
+# Mesmo laço com a sintaxe do List Comprehension
+letras_corretas = ['_' for letra in palavra_secreta]
+```
+
+Veja um outro exemplo utilizando uma condição:
+
+```python
+# Retornar um array com os números pares
+inteiros = [1,3,4,5,7,8,9]
+pares = []
+for numero in inteiros:
+    if numero % 2 == 0:
+        pares.append(numero)
+
+# Mesmo objetivo com o uso do List Comprehension
+inteiros = [1,3,4,5,7,8,9]
+pares = [x for x in inteiros if x % 2 == 0]
+```
+
+### **Leituras de arquivo**
+
+No Python temos a função build-in *Open* para trabalharmos com arquivos. Para uso da função precisamos passar uma *string* com o nome do arquivo e o modo de manipulação do arquivo. Veja os exemplos a seguir:
+
+```python
+# Criação de arquivo e escrita
+arquivo = open('palavra.txt', 'a')
+arquivo.write('banana')
+arquivo.close()
+
+# Leitura de arquivo
+# O método read() quando executado efetua a leitura do arquivo completo posicionando 
+# o ponteiro no final do arquivo. Caso seja necessario ler o arquivo novamento é preciso
+# reabrir o arquivo.
+arquivo = open('palavra.txt', 'r')
+conteudo = arquivo.read()
+print(conteudo)
+arquivo.close()
+
+# Leitura de uma linha do arquivo
+arquivo = open('palavra.txt', 'r')
+linha = arquivo.readline()
+print(linha)
+arquivo.close()
+```
+
+**With**
+
+Ao utilizar as sintaxe de manipulação de arquivo acima, repare o uso do `close()` para cada `open()`, porém ao realizar um procedimento abrindo um arquivo e o mesmo retorne um erro capaz de parar o processamento de leitura, a instancia ficaria aberta. Para resolver isso o *Python* criou o `with`, veja a seguir:
+
+```python
+with open("palavras.txt") as arquivo:
+    for linha in arquivo:
+        print(linha)
+```
+
+Observe que no `with` não tem a necessidade de executar o método `close()`.
