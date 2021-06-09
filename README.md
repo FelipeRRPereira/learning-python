@@ -514,3 +514,124 @@ with open("palavras.txt") as arquivo:
 ```
 
 Observe que no `with` não tem a necessidade de executar o método `close()`.
+
+### Orientação a Objeto
+
+Como em muitas linguagens de programação, a orientação a objetos também está presente na linguagem Python e por ela podemos utilizar dos recursos poderosos do paradigma OO. O paradigma de orientação a objeto tem por objetivo tornar as funcionalidades parecidas como o mundo real. Um exemplo disso, é uma maquina de café. A mesma tem alguns atributos que recebe e com esses atributos e uma funcionalidade especifica gera uma saída que é uma maravilhoso liquido.
+
+**Classe - *class***
+
+A classe é responsável por centralizar ou agrupar atributos e funcionalidades de um determinado objeto, como o exemplo da cafeteira. Veja sintaxe:
+
+```python
+class Cafeteira:
+	pass
+```
+
+Notem que a primeira letra da classe é maiúscula, isso é uma convenção chamada [CamelCase](https://www.google.com/search?q=CamelCase).
+
+**Construtor - *constructor***
+
+Construtores são como o botão de ligar de uma cafeteira seguindo o exemplo acima, nele podemos determinar os atributos mínimos para que ela exista. No caso computacional, ao iniciar uma classe é criado uma referência da memoria onde foi criado a classe. Veja a seguir:
+
+```python
+class Cafeteira:
+	def __init__(self):
+    super().__init__()
+```
+
+O *init* nada mais é que o construtor dessa classe e o parâmetro self é a referência de memoria passada para este novo objeto.
+
+Para cada classe criada provavelmente teremos a necessidade de gerar instâncias com valores específicos. Veja a seguir:
+
+```python
+class Cafeteira:
+  def __init__(self, filtro, qtde_cafe, qtde_agua = 250):
+    self.filtro = filtro
+    self.qtde_cafe = qtde_cafe
+    self.qtde_agua = qtde_agua
+```
+
+Observe que no parâmetro qtde_agua foi adicionado um valor padrão, tirando a necessidade de passar tal informação ao criar uma classe. Veja a seguir:
+
+```python
+cafeteira = Cafeteira(papel, 2)
+```
+
+**Métodos**
+
+São funcionalidades responsáveis por realizar ações de uma determinada classe. Para especifica-las tente pensar em ações que um objeto real funciona. Exemplo de uma cafeteira. Veja a seguir:
+
+```python
+class Cafeteira:
+	def __init__(self, filtro, qtde_cafe = 2, qtde_agua = 250):
+		self.filtro = filtro
+    self.qtde_cafe = qtde_cafe
+    self.qtde_agua = qtde_agua
+	
+	def fazerCafe(self, pessoas):
+		self.qtde_cafe *= pessoas
+		self.qtde_agua *= qtde_agua
+		print(
+			"Para fazer café para {} pessoas foi utilizado {} clolheres de café e {} ml de água."
+			.format(pessoas, self.qtde_cafe, self.qtde_agua)
+		)
+```
+
+Observe que o método `fazerCafe` recebe um parâmetro `self` que representa a referência da memória para o objeto instanciado. 
+
+**Coletor de Lixo - *garbage collector***
+
+Processo que realiza a limpeza dos objetos instanciados que estão inutilizados na memória. Esse processo está presente na maioria das maquinas virtuais das linguagens de programação como Java, C# e etc.
+
+**None**
+
+O *none* tem a finalidade de retirar a referencia da variável que tem por referencia um objeto da memoria, retirando o vinculo entre objeto e variável.
+
+```python
+cafeteiraZ = Cafeteira('Papel')
+cafeteiraZ
+# Retorno
+# <__main__.Cafeteira object at 0x0000015F2EDF7CA0>
+cafeteiraZ = None
+cafeteiraZ
+# Retorno é vazio.
+```
+
+**Atributos Privados**
+
+No *Python* o encapsulamento dos atributos de uma classe são tratados adicionando o dois *underscore* `"__"`. Ou seja, os atributos com *underscore* são vistos como privados e só podem ser acessados na classe. Veja a seguir:
+
+```python
+class Cafeteira:
+	def __init__(self, filtro, qtde_cafe = 2, qtde_agua = 250):
+		self.__filtro = filtro
+    self.__qtde_cafe = qtde_cafe
+    self.__qtde_agua = qtde_agua
+```
+
+Quando adicionado o *underscore* nos atributos o *Python* cria por *"debaixo dos panos"* um atributo que permite o acesso porém com uma sintaxe intuitiva que avisa o desenvolvedor que é um atributo privado. Ex.: `cafeteira._Cafeteira__filtro`.
+
+**Encapsulamento**
+
+Conceito usado para manter atributos, métodos e restrições de acesso encapsulado em um objeto. Veja estrutura padrão:
+
+ 
+
+```python
+class Cafeteira:
+	def __init__(self, filtro, qtde_cafe = 2, qtde_agua = 250):
+	  self.__filtro = filtro
+    self.__qtde_cafe = qtde_cafe
+    self.__qtde_agua = qtde_agua
+	
+	def fazerCafe(self, pessoas):
+		self.__qtde_cafe *= pessoas
+		self.__qtde_agua *= qtde_agua
+		print(
+			"Para fazer café para {} pessoas foi utilizado {} clolheres de café e {} ml de água."
+			.format(pessoas, self.qtde_cafe, self.qtde_agua)
+		)
+```
+
+Note que os atributos estão com *underscore* e quando é necessário a referência de si mesmo usasse o `self`.
